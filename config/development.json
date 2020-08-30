@@ -1,0 +1,6 @@
+{
+    "name": "My Express App - Development",
+    "database": {
+        "url": "mongodb://localhost/EzLearnDb"
+    }
+}
