@@ -13,8 +13,15 @@ exports.getById = async (req, res) => {
     res.send(subject);
 }
 
+exports.getByGradeId = async (req, res) => {
+    const subject = await Subject
+        .find({ grade: req.params.id });
+    if (!subject) return res.status(404).send('The Grade with the given ID was not found.');
+    res.send(subject);
+}
+
 exports.add = async (req, res) => {
-  
+
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message);
 

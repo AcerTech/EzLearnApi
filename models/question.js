@@ -14,11 +14,7 @@ const questionSchema = new mongoose.Schema({
         ref: 'Quiz',
         required: true
     },
-    questionType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'QuestionType',
-        required: true
-    },
+    questionType: {type:String},
     answers: [answerSchema]
 });
 
@@ -26,10 +22,12 @@ function validateQuestion(question) {
     const schema = Joi.object({
         questionText: Joi.string().min(3).max(255).required(),
         imgUrl: Joi.string().max(255),
+        timer:Joi.number().default(0),
         displayOrder: Joi.number(),
         isActive: Joi.boolean(),
+        columensCont:Joi.number().default(0),
         quizId: Joi.objectId().required(),
-        questionTypeId: Joi.objectId().required(),
+        questionType: Joi.string(),
         answers:Joi.array()
     });
     return schema.validate(question);

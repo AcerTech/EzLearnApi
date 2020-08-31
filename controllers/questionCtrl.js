@@ -9,7 +9,7 @@ const { Quiz } = require('../models/quiz');
 exports.get = async (req, res) => {
     const question = await Question
         .find()
-        .populate('questionType', 'name -_id')
+        // .populate('questionType', 'name -_id')
     res.send(question);
 }
 
@@ -31,7 +31,7 @@ exports.getQuestionsByQuizId = async (req, res) => {
 
     const question = await Question
         .find({ quiz: req.params.id })
-        .populate('questionType', 'name -_id')
+        // .populate('questionType', 'name -_id')
     // .populate('quiz', 'name -_id')
     res.send(question);
 
@@ -39,7 +39,7 @@ exports.getQuestionsByQuizId = async (req, res) => {
 }
 
 exports.add = async (req, res) => {
-    // console.log(req.body)
+    console.log(req.body)
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message);
 

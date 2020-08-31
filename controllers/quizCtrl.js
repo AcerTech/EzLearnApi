@@ -11,6 +11,12 @@ exports.getById = async (req, res) => {
    res.send(quiz);
 }
 
+exports.getBySubjectId = async (req, res) => {
+   const quiz = await Quiz.
+      find({subject: req.params.id});
+   if (!quiz) return res.status(404).send('The Subject with the given ID was not found.');
+   res.send(quiz);
+}
 
 exports.add = async (req, res) => {
    const { error } = validate(req.body);
